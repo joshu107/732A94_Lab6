@@ -16,11 +16,11 @@ test_that("Outputs", {
 knapsack_objects <- genKnapsack(2000)
 test_that("Outputs", {
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)$value, 
-                16670)
+               16770)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)$elements,
                 c(5, 8))
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 3500)$value, 
-                16670)
+               16770)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 3500)$elements,
                 c(5, 8))
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 2000)$value, 
