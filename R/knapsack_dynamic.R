@@ -1,4 +1,8 @@
 knapsack_dynamic <- function(x, W) {
+  # The algorithm does not follow the pseudocode on wiki, but rather this 
+  # explanation https://www.youtube.com/watch?v=8LusJS5-AGo . It is the same
+  # but the matrix is rotated, plus it is explained how to identify actual
+  # elements.
   
   n <- nrow(x)
   
@@ -23,11 +27,20 @@ knapsack_dynamic <- function(x, W) {
   }
   
   # Indetify elements
-  
-  
+  elements <- c()
+  # If the value in the element's row is the same as in the row where it was
+  # not allowed to use it, the elements is not used. Otherwise it is
+  for (e in n:2) {
+    if (m[e, W + 1] > m[e - 1, W + 1]) {
+      elements <- c(elements, e) 
+    }
+  }
+  if (m[1, W + 1] > 0) {
+    elements <- c(elements, 1) 
+  }
   
   solution <- list()
   solution$value <- m[e, w]
-  solution$elemnts <- "NOT IMPLEMENTED"
+  solution$elemnts <- rev(elements)
   return(solution)
 }
