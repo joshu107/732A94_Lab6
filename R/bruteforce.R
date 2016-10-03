@@ -17,7 +17,7 @@ knapsack_objects <- data.frame(
 # Brute force approach ----------------------------------------------------
 
 knapsack_brute_force <- function(x, W) {
-  if(!any(is.data.frame(x), dim(x)[2]) == 2) {
+  if(!any(is.data.frame(x), dim(x)[2] == 2)) {
     stop('x has to be of the type data.frame with two columns.')
   }
   
