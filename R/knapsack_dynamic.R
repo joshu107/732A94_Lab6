@@ -22,5 +22,6 @@ knapsack_dynamic <- function(x, W) {
   
   res <- list()
   res$value <- m[i, j]
+  res$elemnts <- "NOT IMPLEMENTED YET"
   return(res)
 }
