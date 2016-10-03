@@ -29,7 +29,20 @@ knapsack_brute_force <- function(x, W) {
   # x <- reduce(x, W)
   
   # Create a data.frame which contains all possible combinations
-  df <- expand.grid(lapply(row.names(x), function(n) seq.int(0,1)))
+  n <- nrow(x)
+  if (n < 2^31) {
+    # Generate a war matrix where each column represents a combination, each row
+    # represents an item. Transpose. Remove extra columns (with only zeros).
+    # Convert to logical. Convert to data frame
+    df <- as.data.frame(
+      matrix(
+        as.logical(
+          t(sapply(1:2^n, FUN = function(x) {intToBits(x)}))[, 1:n]),
+        ncol = n)
+    )
+  } else {
+    df <- expand.grid(lapply(row.names(x), function(n) seq.int(0,1)))
+  }
   
   # Add column with the weight and the value of each combination
   weight <- apply(df, 1, function(n) sum(n * x$w))
