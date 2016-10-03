@@ -21,9 +21,9 @@ knapsack_brute_force <- function(x, W) {
     stop('x has to be of the type data.frame with two columns.')
   }
   
-  if(!all(is.numeric(knapsack_objects), knapsack_objects > 0)) {
-    stop('Values in the data.frame must be numeric and greater than 0.')
-  }
+  # if(!all(is.numeric(x), x > 0)) {
+  #   stop('Values in the data.frame must be numeric and greater than 0.')
+  # }
   
   # Only consider items which weigh less or equal than W.
   # x <- reduce(x, W)
