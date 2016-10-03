@@ -1,4 +1,30 @@
 knapsack_dynamic <- function(x, W) {
+  # Error handling 
+  if(!all(is.data.frame(x), 
+          dim(x)[2] == 2,
+          "v" %in% names(x),
+          "w" %in% names(x)
+  )) {
+    stop('x has to be of the type data.frame with two columns.')
+  }
+  
+  if(!all(is.numeric(x$w), is.numeric(x$v))) {
+    stop('Values in the data.frame must be numeric and greater than 0.')
+  }
+  
+  if (!all(x > 0)) {
+    stop('Values in the data.frame must be numeric and greater than 0.')
+  }
+  
+  if (!all(is.numeric(W), W > 0)) {
+    stop("Weight value must be numeric and greater than 0.")
+  }
+  
+  if (!all(all(x$w %% 1 == 0), W %% 1 == 0)) {
+    stop("Weight values must be integers.")
+  }
+  
+  
   # The algorithm does not follow the pseudocode on wiki, but rather this 
   # explanation https://www.youtube.com/watch?v=8LusJS5-AGo . It is the same
   # but the matrix is rotated, plus it is explained how to identify actual
