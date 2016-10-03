@@ -1,12 +1,17 @@
 knapsack_brute_force <- function(x, W) {
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
-          any(all(names(x) == c("v", "w")), all(names(x) == c("w", "v")))
+          "v" %in% names(x),
+          "w" %in% names(x)
     )) {
     stop('x has to be of the type data.frame with two columns.')
   }
   
-  if(!all(is.numeric(x$w), is.numeric(x$v), all(x > 0))) {
+  if(!all(is.numeric(x$w), is.numeric(x$v))) {
+    stop('Values in the data.frame must be numeric and greater than 0.')
+  }
+  
+  if (!all(x > 0)) {
     stop('Values in the data.frame must be numeric and greater than 0.')
   }
   
