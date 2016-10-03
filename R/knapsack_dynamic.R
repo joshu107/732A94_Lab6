@@ -14,7 +14,9 @@ knapsack_dynamic <- function(x, W) {
   for (e in 1:n) { # up to this item is allowed to use
     for (w in 2:(W + 1)) { # max allowed weight in these iteration
       if (x$w[e] > w - 1) {
-        m[e, w] <- m[e - 1, w]
+        # max(m[e - 1, w], 0) is needed, because if we are in the no values
+        # in the row 0
+        m[e, w] <- max(m[e - 1, w], 0)
       } else {
         # max(m[e - 1, w - x$w[e]], 0) is needed, because if we are in the 
         # first row, then e - 1 returns numeric(0), but numeric(0) plus any
@@ -28,19 +30,25 @@ knapsack_dynamic <- function(x, W) {
   
   # Indetify elements
   elements <- c()
-  # If the value in the element's row is the same as in the row where it was
-  # not allowed to use it, the elements is not used. Otherwise it is
-  for (e in n:2) {
-    if (m[e, W + 1] > m[e - 1, W + 1]) {
-      elements <- c(elements, e) 
+  e <- n
+  w <- W + 1
+  done <- FALSE
+  repeat {
+    if (m[e, w] == 0) {
+      break
     }
-  }
-  if (m[1, W + 1] > 0) {
-    elements <- c(elements, 1) 
+    
+    if (m[e, w] > m[e - 1, w]) {
+      elements <- c(elements, e)
+      w <- w - x$w[e]
+      e <- e - 1
+    } else {
+      e <- e - 1
+    }
   }
   
   solution <- list()
-  solution$value <- m[e, w]
-  solution$elemnts <- rev(elements)
+  solution$value <- m[n, W + 1]
+  solution$elements <- rev(elements)
   return(solution)
 }
