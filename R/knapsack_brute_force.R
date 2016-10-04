@@ -40,7 +40,7 @@ knapsack_brute_force <- function(x, W) {
   
   # Add column with the weight and the value of each combination
   weight <- apply(df, 1, function(n) sum(n * x$w))
-  value <- apply(df, 1, function(m) round(sum(m * x$v)))
+  value <- apply(df, 1, function(m) sum(m * x$v))
   
   df$weight <- weight
   df$value <- value
