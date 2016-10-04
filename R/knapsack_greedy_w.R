@@ -1,4 +1,4 @@
-knapsack_greedy_w2 <- function(x, W) {
+knapsack_greedy_w <- function(x, W) {
   # Error handling
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
