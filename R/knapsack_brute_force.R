@@ -24,7 +24,7 @@ knapsack_brute_force <- function(x, W) {
   
   # Create a data.frame which contains all possible combinations
   n <- nrow(x)
-  if (n < 2^31) {
+  if (n < 31) {
     # Generate a war matrix where each column represents a combination, each row
     # represents an item. Transpose. Remove extra columns (with only zeros).
     # Convert to logical. Convert to data frame
