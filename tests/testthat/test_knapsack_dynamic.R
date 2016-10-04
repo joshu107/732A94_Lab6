@@ -81,20 +81,20 @@ test_that("Outputs", {
 # Test on large data
 knapsack_objects <- genKnapsack(2000)
 test_that("Outputs", {
-  expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)$value, 
-               16770)
+  expect_equal(round(knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)$value,2), 
+               16770.38)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)$elements,
                c(5, 8))
-  expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 3500)$value, 
-               16770)
+  expect_equal(round(knapsack_dynamic(x = knapsack_objects[1:12,], W = 3500)$value,2), 
+               16770.38)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 3500)$elements,
                c(5, 8))
-  expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 2000)$value, 
-               15428)
+  expect_equal(round(knapsack_dynamic(x = knapsack_objects[1:8,], W = 2000)$value,2), 
+               15427.81)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:8,], W = 2000)$elements,
                c(3, 8))
-  expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000)$value, 
-               15428)
+  expect_equal(round(knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000)$value,2), 
+               15427.81)
   expect_equal(knapsack_dynamic(x = knapsack_objects[1:12,], W = 2000)$elements,
                c(3, 8))  
 })
