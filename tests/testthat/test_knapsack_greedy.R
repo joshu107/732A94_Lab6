@@ -63,3 +63,7 @@ test_that("Inputs", {
 
 # Outputs ----------------------------------------------------------------------
 context("knapsack_greedy outputs")
+knapsack_objects <- genKnapsack(2000)
+test_that("Outputs", {
+  expect_equal(knapsack_greedy(x = knapsack_objects[1:800,], W = 3500)$value, 192647)
+})
