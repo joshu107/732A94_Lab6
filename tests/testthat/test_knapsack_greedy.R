@@ -63,6 +63,18 @@ test_that("Inputs", {
 
 # Outputs ----------------------------------------------------------------------
 context("knapsack_greedy outputs")
+
+# Test on small data
+knapsack_objects <- data.frame(w = c(1, 3, 4, 5), v = c(1, 4, 5, 7))
+test_that("Outputs", {
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 7)$value, 8)
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 7)$elements, c(4, 1))
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 5)$value, 7)
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 5)$elements, c(4))
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 13)$value, 17)
+  expect_equal(knapsack_greedy(x = knapsack_objects, W = 13)$elements, c(4, 2, 3, 1))
+})
+
 knapsack_objects <- genKnapsack(2000)
 test_that("Outputs", {
   expect_equal(knapsack_greedy(x = knapsack_objects[1:800,], W = 3500)$value, 192647)
