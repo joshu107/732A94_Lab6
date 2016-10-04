@@ -8,7 +8,7 @@ genKnapsack <- function(n) {
   knapsack_objects <-
     data.frame(
       w=sample(1:4000, size = n, replace = TRUE),
-      v=runif(n = n, 0, 10000)
+      v=stats::runif(n = n, 0, 10000)
     )
   return(knapsack_objects)
 }
