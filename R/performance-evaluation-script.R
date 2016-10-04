@@ -36,6 +36,20 @@ benchmark(
 
 
 
+benchmark(
+  knapsack_greedy_w(x = knapsack_objects[1:200000,], W = 3500000),
+  replications = nReplications
+)
+
+
+benchmark(
+  knapsack_greedy_w2(x = knapsack_objects[1:200000,], W = 3500000),
+  replications = nReplications
+)
+
+profvis(knapsack_greedy_w(x = knapsack_objects[1:200000,], W = 350000))
+
+
 
 
 

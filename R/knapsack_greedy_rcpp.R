@@ -1,4 +1,6 @@
-knapsack_greedy_w2 <- function(x, W) {
+#' @useDynLib Knapsack
+#' @importFrom Rcpp sourceCpp
+knapsack_greedy_rcpp <- function(x, W) {
   # Error handling
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
@@ -20,26 +22,6 @@ knapsack_greedy_w2 <- function(x, W) {
     stop("Weight value must be numeric and greater than 0.")
   }
   
-  # Closure for storing elements
-  elementsClosure <- function(n) {
-    # Creates a closure to add new elements in place without copying an array
-    # every time
-    # 
-    # Args:
-    #   n: max length of a vector with elements
-    
-    elements <- numeric(length = n)
-    i <- 1
-    
-    f <- function(element) {
-      elements[i] <<- element
-      i <<- i + 1
-      elements
-    }
-    
-    return(f)
-  }
-  
   n <- nrow(x)
   
   # Add column with initial position
@@ -55,23 +37,20 @@ knapsack_greedy_w2 <- function(x, W) {
   
   value <- 0
   remainingWeight <- W
-  elements <- elementsClosure(n + 1) # we need one extra element
+  elements <- c()
   # Pick elements with high ratio (higher in the data frame) first. If the weight limit
   # allows, pick the ones with smaller ratio
   for (e in 1:n) {
     if (xw[e] <= remainingWeight) {
       value <- value + xv[e]
       remainingWeight <- remainingWeight - xw[e]
-      elements(xelement[e])
+      elements <- c(elements, xelement[e])
     } 
   }
   
-  element <- elements(0) # call the closure to get the vector
-  
   solution <- list()
   solution$value <- value
-  solution$elements <- element[element != 0] # the vector is of length n + 1
-                                             # but we need only non-zero elems
+  solution$elements <- elements
   
   return(solution)
 }
