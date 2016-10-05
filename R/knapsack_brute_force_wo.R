@@ -1,4 +1,9 @@
-knapsack_brute_force <- function(x, W) {
+#' Brute force approach for the knapsack problem.
+#' 
+#' 
+#'
+#'@export
+knapsack_brute_force_wo <- function(x, W) {
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
           "v" %in% names(x),
@@ -20,6 +25,7 @@ knapsack_brute_force <- function(x, W) {
   }
   
   # Only consider items which weigh less or equal than W.
+  # 
   # x <- reduce(x, W)
   
   # Create a data.frame which contains all possible combinations
@@ -54,5 +60,9 @@ knapsack_brute_force <- function(x, W) {
   res
   
 }
+
+
+
+
 
 
