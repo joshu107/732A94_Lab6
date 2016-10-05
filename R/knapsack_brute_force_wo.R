@@ -1,8 +1,3 @@
-#' Brute force approach for the knapsack problem.
-#' 
-#' 
-#'
-#'@export
 knapsack_brute_force_wo <- function(x, W) {
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
