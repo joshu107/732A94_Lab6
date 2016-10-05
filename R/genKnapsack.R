@@ -2,7 +2,8 @@
 #' 
 #' @param n number of elements in the knapsack object (numeric)
 #' 
-#' @return data frame with two columns \code{w} (weght) and \code{v} (value)
+#' @return data frame with two columns \code{w} (weight) and \code{v} (value)
+#' @export
 genKnapsack <- function(n) {
   set.seed(42)
   knapsack_objects <-
