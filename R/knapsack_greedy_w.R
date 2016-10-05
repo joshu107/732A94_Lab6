@@ -6,7 +6,6 @@
 #' 
 #' @return theoretical maximum \code{$value} (knapsack value) composed of \code{$elements} (which items)
 #'
-#' @export
 knapsack_greedy_w <- function(x, W) {
   # Error handling
   if(!all(is.data.frame(x), 
