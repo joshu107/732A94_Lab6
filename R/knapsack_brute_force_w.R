@@ -1,4 +1,4 @@
-knapsack_brute_force_w_i <- function(x, W) {
+knapsack_brute_force_w <- function(x, W) {
   if(!all(is.data.frame(x), 
           dim(x)[2] == 2,
           "v" %in% names(x),
