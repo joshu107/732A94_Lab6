@@ -37,9 +37,9 @@ knapsack_brute_force_w <- function(x, W) {
   for (i in seq(from = 2, to = floor(W/min(x$w)))) {
     # Create all  possible combinations as well as of the sum
     # of the weights and values for each combination
-    all_combinations <- combn(as.integer(row.names(x)), i)
-    all_weights <- combn(x$w, i, sum)
-    all_values <- combn(x$v, i, sum)
+    all_combinations <- utils::combn(as.integer(row.names(x)), i)
+    all_weights <- utils::combn(x$w, i, sum)
+    all_values <- utils::combn(x$v, i, sum)
       
     possible_combination <- which(all_weights <= W)
     max_value <- which.max(all_values[possible_combination])

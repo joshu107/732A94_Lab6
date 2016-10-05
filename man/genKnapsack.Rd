@@ -10,7 +10,7 @@ genKnapsack(n)
 \item{n}{number of elements in the knapsack object (numeric)}
 }
 \value{
-data frame with two columns \code{w} (weght) and \code{v} (value)
+data frame with two columns \code{w} (weight) and \code{v} (value)
 }
 \description{
 Generates a knapsack object

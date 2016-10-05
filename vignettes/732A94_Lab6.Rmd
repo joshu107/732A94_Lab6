@@ -11,7 +11,7 @@ vignette: >
 
 ## Knapsack package
 
-This package is designed to study the effects of algorithms with different complexity. 
+This package is designed to study the effects of three algorithms with different complexity. The problem is given as a knapsack that has a maximum weight it can carry. Given a set of objects with varying values and weights, what is the optimal combination of items to give the greatest value in the knapsack? This is answered using three different methods, brute force, dynamic and greedy heuristic.
 
 ## How to install and load
 
@@ -44,26 +44,55 @@ or access function directly, using `Knapsack::<function_name>`.
 
 ### Knapsack
 
-This is where we talk about what steps to do things in 
+The first step is to create a list of items with values and weights.  It is possible to use the built-in  `genKnapsack`  function:
 
 ```{r}
-here<-("is where we give an example")
+generated_knapsack<-genKnapsack(200)
 ```
 
-To check whether we have passed the correct address, we might want print the object:
+Alternatively, one may manually create a list of items in the following manner:
 ```{r}
-print(here)
+set.seed(42)
+n <- 2000
+knapsack_objects <-
+data.frame(
+w=sample(1:4000, size = n, replace = TRUE),
+v=runif(n = n, 0, 10000)
+)
 ```
 
-Second, we use `another` function
+This can then be used within the other functions.
+
+###Brute Force
+
+The `knapsack_brute_force` function analyzes every possible combination and therefore always returns the maximum possible value for the knapsack. However, this thoroughness makes the algorithm inefficient.
+
+The `knapsack_brute_force` function is used by inputting the list of objects and the total weight the knapsack can carry. It can be seen in the following example:
 ```{r}
-alsohere <- another(here)
+knapsack_brute_force(x = knapsack_objects[1:8,], W = 3500)
 ```
 
-This returns a `different` object.
-You could also print using the R console./
-```{r, eval = FALSE}
-another
+This returns two `list` objects.  The first is composed of a `double` of the maximum discovered value of the knapsack.  The second is composed of one or more `double` that represent the items included in the knapsack.
+
+###Dynamic Programming
+
+The `knapsack_dynamic` assumes discrete values for the item weights. It iterates over all possible values of \code{w} (weight). It returns the same results as `knapsack_brute_force` but is more efficient.
+
+The `knapsack_dynamic` function is used by inputting the list of objects and the total weight the knapsack can carry. It can be seen in the following example:
+```{r}
+knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)
 ```
 
-We can here talk about the results and varying times it takes to run each algorithm.
+This returns two `list` objects.  The first is composed of a `double` of the maximum discovered value of the knapsack.  The second is composed of one or more `double` that represent the items included in the knapsack.
+
+###Greedy Heuristic
+
+The `knapsack_greedy` function uses an approximation that will not necessarily give the exact result, but will drastically reduce the processing time and load as compared to the previous methods.
+
+The `knapsack_brute_force` function is used by inputting the list of objects and the total weight the knapsack can carry. It can be seen in the following example:
+```{r}
+knapsack_greedy(x = knapsack_objects[1:800,], W = 3500)
+```
+
+This returns two `list` objects.  The first is composed of a `double` of the maximum discovered value of the knapsack.  The second is composed of one or more `double` that represent the items included in the knapsack.
+

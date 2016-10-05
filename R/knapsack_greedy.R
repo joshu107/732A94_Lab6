@@ -4,6 +4,8 @@
 #' 
 #' @param W the maximum weight (numeric) the knapsack can hold
 #' 
+#' @param fast whether to use the rcpp optimization
+#' 
 #' @return theoretical maximum \code{$value} (knapsack value) composed of \code{$elements} (which items)
 #'
 #' @export
