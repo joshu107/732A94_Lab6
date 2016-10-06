@@ -67,8 +67,8 @@ knapsack_brute_force_w <- function(x, W) {
       # If the current weight + the smallest weight in the vector of weights
       # exceeds the limit W the algorithm will return the current result.
       if ((weight + min(x$w)) >= W) {
-        res <- list(value = best_combination$value, 
-                    elements = which(best_combination == 1))
+        res <- list(value = value, 
+                    elements = elements)
         return(res)
       }
     }
