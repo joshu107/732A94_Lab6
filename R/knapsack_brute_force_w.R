@@ -27,13 +27,16 @@ knapsack_brute_force_w <- function(x, W) {
     stop("Weight value must be numeric and greater than 0.")
   }
   
-  weight <- value <- elements <- NA
   
   # The for loop creates all possible combinations of items. It starts with 
-  # combining 2 elements. Which each iteration it will increase the number of 
+  # combining 2 elements. With each iteration it will increase the number of 
   # elements by 1 until the sequence is finished (i == W/minx$w) or one of the
   # conditions to return the result is fulfilled.
-    
+  
+  elements <- which.max(x$w <= W)
+  weight <- x$w[elements]
+  value <- x$v[elements]
+  
   for (i in seq(from = 2, to = floor(W/min(x$w)))) {
     # Create all  possible combinations as well as of the sum
     # of the weights and values for each combination
@@ -57,7 +60,7 @@ knapsack_brute_force_w <- function(x, W) {
       elements <- tmp_elements
       
       # If the current weight + the smallest weight in the vector of weights
-      # exceeds the limit W the algorithm can return the current result.
+      # exceeds the limit W the algorithm will return the current result.
       if ((weight + min(x$w)) >= W) {
         return(res <- list(value = value, elements = elements))
       }
@@ -67,7 +70,6 @@ knapsack_brute_force_w <- function(x, W) {
     }
   }
 }
-
 
 
 
